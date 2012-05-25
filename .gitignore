@@ -1,4 +1,4 @@
-
-avrfid/avrfid.eep
-
-avrfid/avrfid.elf
+*.eep
+*.elf
+*.out
+.DS_Store
