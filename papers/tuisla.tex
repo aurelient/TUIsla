@@ -1,0 +1,189 @@
+\documentclass{sigchi}
+
+% Remove or comment out these two lines for final version
+\toappearbox{\Large Submitted to CHI'13. \\Do not cite, do not circulate.}
+\pagenumbering{arabic}% Arabic page numbers for submission. 
+
+% Use \toappear{...} to override the default ACM copyright statement (e.g. for preprints).
+
+% Load basic packages
+\usepackage{balance}  % to better equalize the last page
+\usepackage{graphics} % for EPS, load graphicx instead
+\usepackage{times}    % comment if you want LaTeX's default font
+\usepackage{url}      % llt: nicely formatted URLs
+
+% llt: Define a global style for URLs, rather that the default one
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\bf\ttfamily}}}
+\makeatother
+\urlstyle{leo}
+
+
+% To make various LaTeX processors do the right thing with page size.
+\def\pprw{8.5in}
+\def\pprh{11in}
+\special{papersize=\pprw,\pprh}
+\setlength{\paperwidth}{\pprw}
+\setlength{\paperheight}{\pprh}
+\setlength{\pdfpagewidth}{\pprw}
+\setlength{\pdfpageheight}{\pprh}
+
+% Make sure hyperref comes last of your loaded packages, 
+% to give it a fighting chance of not being over-written, 
+% since its job is to redefine many LaTeX commands.
+\usepackage[pdftex]{hyperref}
+
+\hypersetup{
+    % bookmarks=true,         % show bookmarks bar?
+    % unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={wait a bit},    % title
+    pdfauthor={wait a bit},     % author
+    % pdfsubject={},   % subject of the document
+    pdfcreator={:)},   % creator of the document
+    % pdfproducer={Producer}, % producer of the document
+    pdfkeywords={Tabletop} {Occlusion}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+% create a shortcut to typeset table headings
+\newcommand\tabhead[1]{\small\textbf{#1}}
+
+
+% End of preamble. Here it comes the document.
+\begin{document}
+	\definecolor{Orange}{rgb}{1,0.5,0}
+	\definecolor{Green}{rgb}{0,1,0}
+	\definecolor{Blue}{rgb}{0,0,1}
+	\definecolor{Red}{rgb}{1,0,0}
+
+	\newcommand{\comment}[1]{\textit{\textcolor{Blue}{[#1]}}}
+	\newcommand{\todo}[1]{\textsf{\textcolor{Orange}{[#1]}}}
+	\newcommand{\fixme}[1]{\textcolor{Red}{[#1]}}
+	\newcommand{\note}[1]{\textsf{\textcolor{Green}{[#1]}}}	
+
+\title{TUIsla\\ wireless and battery-less phidgets}
+
+% Note that submissions are blind, so author information should be omitted
+\numberofauthors{3}
+\author{
+  \alignauthor 1st Author Name\\
+    \affaddr{Affiliation}\\
+    \affaddr{Address}\\
+    \email{e-mail address}\\
+    \affaddr{Optional phone number}
+  \alignauthor 2nd Author Name\\
+    \affaddr{Affiliation}\\
+    \affaddr{Address}\\
+    \email{e-mail address}\\
+    \affaddr{Optional phone number}    
+  \alignauthor 3rd Author Name\\
+    \affaddr{Affiliation}\\
+    \affaddr{Address}\\
+    \email{e-mail address}\\
+    \affaddr{Optional phone number}
+}
+
+% Teaser figure can go here
+%\teaser{
+%  \centering
+%  \includegraphics{Figure1}
+%  \caption{Teaser Image}
+%  \label{fig:teaser}
+%}
+
+\maketitle
+
+\begin{abstract}
+We present TUIsla...
+\end{abstract}
+
+\keywords{
+	tangible interaction, prototyping, rfid, wireless, battery, phidgets, design, ubicomp.
+%	\\\textcolor{red}{Mandatory section to be included in your final version.}
+}
+
+\category{H.5.m.}{Information Interfaces and Presentation (e.g. HCI)}{Miscellaneous
+% \\
+% \textcolor{red}{See: \url{http://www.acm.org/about/class/1998/}
+% for more information and the full list of ACM classifiers and descriptors. 
+% Mandatory section: On the submission page
+% only the classifiers' letter-number combination will need to be entered.}
+}
+
+\terms{
+	Human Factors; Design; Measurement. 
+% \textcolor{red}{If you choose more than one ACM General Term, 
+% separate the terms with a semi-colon. See list of ACM terms at:
+% \url{http://www.sheridanprinting.com/sigchi/generalterms.htm}.
+% Optional section to be included in your final version.}
+}
+
+\section{Introduction}
+
+
+\section{Related work}
+
+WISP: A Wirelessly-Powered Platform for Sensing and Computation
+
+A Compact, Wireless, Self-Powered Pushbutton Controller
+
+Tangible Music Interfaces Using Passive Magnetic Tags
+
+N. Marquadt
+
+
+\section{Applications}
+
+- Prototyping
+
+- Remote controls
+
+- Robust interactions: outdoors (water proof), kitchens (water-proof + counter/intelligence)
+
+
+\section{Conclusion}
+
+
+
+
+
+\section{Acknowledgments}
+Blank for review.
+
+% Balancing columns in a ref list is a bit of a pain because you
+% either use a hack like flushend or balance, or manually insert
+% a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
+% multicols doesn't work because we're already in two-column mode,
+% and flushend isn't awesome, so I choose balance.  See this
+% for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
+%
+% Note that in a perfect world balance wants to be in the first
+% column of the last page.
+%
+% If balance doesn't work for you, you can remove that and
+% hard-code a column break into the bbl file right before you
+% submit:
+%
+% http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
+% in-an-ieee-paper-if-using-bibtex
+%
+% Or, just remove \balance and give up on balancing the last page.
+%
+\balance
+
+% If you want to use smaller typesetting for the reference list,
+% uncomment the following line:
+% \small
+\bibliographystyle{acm-sigchi}
+\bibliography{tuisla}
+\end{document}
