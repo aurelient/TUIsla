@@ -8,6 +8,7 @@ int main (void)
 {
   //Set PORTB.3 to be output
   DDRB = 0b00001000;
+  
   while (1) {
     //Set PORTB.3 high
     PORTB = 0b00001000;

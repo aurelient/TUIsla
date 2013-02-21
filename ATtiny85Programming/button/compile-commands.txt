@@ -1,0 +1,50 @@
+PRG            = uart_hello
+OBJ            = main.o
+PROGRAMMER     = avrispmkII
+PORT           = usb
+MCU_TARGET     = attiny85 
+AVRDUDE_TARGET = atmega328p
+OPTIMIZE       = -Os
+DEFS           =
+LIBS           =
+ 
+HZ          = 8000000UL
+ 
+# You should not have to change anything below here.
+ 
+CC             = avr-gcc
+ 
+# Override is only needed by avr-lib build system.
+ 
+override CFLAGS        = -g -DF_CPU=$(HZ) -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) $(DEFS)
+override LDFLAGS       = -Wl,-Map,$(PRG).map
+
+OBJCOPY        = avr-objcopy
+OBJDUMP        = avr-objdump
+ 
+all: $(PRG).elf lst text #eeprom
+ 
+$(PRG).elf: $(OBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+ 
+clean:
+	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak *.hex *.bin *.srec
+	rm -rf *.lst *.map $(EXTRA_CLEAN_FILES)
+ 
+lst:  $(PRG).lst
+ 
+%.lst: %.elf
+	$(OBJDUMP) -h -S $< > $@
+
+
+
+
+
+
+===========
+
+avr-gcc -DF_CPU=8000000UL -mmcu=attiny85 -Os -o blink.out blink.c
+avr-objcopy -O ihex -R .eeprom blink.out blink.hex
+
+
+avrdude -c usbtiny -p t85 -u -U flash:w:button.hex

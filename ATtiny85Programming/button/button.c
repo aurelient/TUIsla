@@ -27,7 +27,7 @@ int main(void)
 
     // If the button is pushed (i.e. that bit is 0) 
     // then turn the LED on with a function.
-    if ( temp == 0 )
+    if ( temp == 0b00001000 ) // 0b00001000
     {
         set_PORTB_bit(4,1);  // LED on (LED is on PB4)
     }

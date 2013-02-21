@@ -124,16 +124,24 @@
 
 #define OUT_PINS       _BV(PINB3) | _BV(PINB4)
 
+	/*
+	 * here we define the delay macro which is doing nothing for a
+	 * 'cycles' number of clock cycles.
+	 */
     .macro	delay cycles
     .if \cycles > 1
     rjmp	.+0
     delay	(\cycles - 2)
     .elseif \cycles > 0
-    nop
+    nop //TODO: check what nop does
     delay	(\cycles - 1)
     .endif
     .endm
 
+	/*
+	 * here we define the manchester macro which is handling the manchester 
+	 * encoding
+	 */
     .macro	manchester bit, count=1
     .if		\count
     manchester (\bit >> 1), (\count - 1)
@@ -289,14 +297,14 @@ loop:
         
         /*
          * Emit a 0 at the baseband layer. (Toggle every 4 cycles, for 50 cycles)
-	 * There was an rjmp that got us to the beginning of the loop, so drop
-	 * 2 cycles from the delay if this is the first bit.  That will give the
-	 * appropriate delay before the toggle.
-	 *
-	 * From observing the HID card, each 0 bit is either 48 or 52 cycles.
-	 * The length alternates to keep the average at 50.  This keeps the
-	 * waveform smooth, and keeps each bit in its 50 cycle time slot.
-	 *
+         * There was an rjmp that got us to the beginning of the loop, so drop
+         * 2 cycles from the delay if this is the first bit.  That will give the
+         * appropriate delay before the toggle.
+         *
+         * From observing the HID card, each 0 bit is either 48 or 52 cycles.
+         * The length alternates to keep the average at 50.  This keeps the
+         * waveform smooth, and keeps each bit in its 50 cycle time slot.
+         *
          * We don't have time for a function call, so we just chew
          * up lots of flash...
          */
@@ -371,13 +379,13 @@ loop:
 	 * remove, and modify these 'manchester' macros. Just make sure
 	 * the result adds up to the right number of bits.
 	 */
-        header
-        manchester	HID_MFG_CODE, 20
+	header
+	manchester	HID_MFG_CODE, 20
 	manchester	HID_SITE_CODE, 8
 	manchester	HID_UNIQUE_ID, 16
 	manchester	ODD_PARITY(HID_MFG_CODE ^ HID_SITE_CODE ^ HID_UNIQUE_ID), 1
 
-        rjmp	loop
+	rjmp	loop
 
 
 #endif /* FORMAT_IS_HID */
