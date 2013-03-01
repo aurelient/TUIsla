@@ -29,7 +29,7 @@ breaklinks=true, }
 
 
 
-\title{TUISLA: Wireless and Batteryless Phidgets \newline for Rapid Prototyping and Sensing}
+\title{TUIsla: Wireless and Battery-less components \newline for Rapid Prototyping and Sensing}
 \numberofauthors{2}
 \author{
   \alignauthor First Author Name (Blank for Blind Review)\\
@@ -43,30 +43,32 @@ breaklinks=true, }
 \maketitle
 
 \begin{abstract}
-Most input devices are limited by communication and energy  
-  
+We present TUIsla a library of input components which do not require any wiring to function.
+TUIslets are RFIDs tags extended with input components, they communicate their state and gather energy using electromagnetic induction. This means that these input components are wireless and do not require any additional energy source (battery or cable). 
+We outline three different application areas, which leverage each a benefit from TUIsla: 1. Rapid prototyping of tangible inputs (e.g. car panel or Stereo) which illustrates the ``no hassle" quality of TUIslets wireless components. 
+2. Battery-less remote controls which emphasizes the benefits of using a remote energy source.
+3. Simple sensors for harsh environments such as outdoors or factory/laboratory settings, where Tuislets can be sealed and protected.
+We finally revisit the concept of Malleable Computing developed around the Pin\&Play platform and show how TUIsla extends it further. 
 \end{abstract}
 
 \keywords{tangible interaction, prototyping, rfid, wireless, battery, phidgets, design, ubicomp.}
 
 \category{H.5.2}{Information interfaces and presentation (e.g., HCI)}{Miscellaneous}.
 
-\generalterms{This section is limited to the following 16 terms and
-MUST be included on the first page of all submissions after the ACM
-Categories section, then as well chosen properly on the Proceedings
-or Publication's submission page: Algorithms, Design,
-Documentation, Economics, Experimentation, Human Factors, Languages,
-Legal Aspects, Management, Measurement, Performance, Reliability,
-Security, Standardization, Theory, Verification.}
+\generalterms{Design, Human Factors, Languages.}
 
 \section{Introduction}
-Interactive  
+Intro on input devices and components requiring wires and complex setup.
 
+Input devices are generally in direct connection with a main station. This direct connection is either supported 
 
+We present TUIsla a library of wireless and batteryless input components. These components extend RFIDs tags with input components to communicate their state and gather energy using electromagnetic induction.
+W
 
-
+Benefits compared to pin and play and others : a bit of location awareness and output.
+ 
 \section{Related Work}
-
+Several lines of research are relevant to the project : Pin\&Play for easy setup input elements, work on 
 
 \subsection{Malleable computing}
 all the projects related to VoodooIO and pushpin computing
@@ -92,6 +94,8 @@ Marquadt
 General explanation of rfid technology citing Roy want.
 
 
+1-Wire and iButton
+
 \section{TUISLA}
 
 We provide here an overview of the system
@@ -101,6 +105,7 @@ We provide here an overview of the system
 \subsection{Tracking}
 
 \subsection{Software element}
+-> Processing library.
 
 \section{Case study evaluation}
 Prototyping with high fidelity physical components.
@@ -110,7 +115,10 @@ Prototyping with high fidelity physical components.
 
 - Prototyping
 
-- Remote controls
+\subsection{Globally controlled widgets}
+While low frequency RFIDs have only offer short-range readings, extending TUIslets to high frequency RFIDs (Mhz or Ghz) would enable readings from larger distances (10m?) as well as better anti-collision mechanisms.
+
+- Remote controls / room level controls (ex: remotes for classrooms which can be enabled and disabled at will)
 
 - Robust interactions: outdoors (water proof), kitchens (water-proof + counter/intelligence)
 

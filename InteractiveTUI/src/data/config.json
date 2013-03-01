@@ -1,0 +1,48 @@
+{ "components": [
+	{
+	"name":"Rotary1",
+	"image":"../data/ui/wheel2.png",
+	"actions": [
+		{"id":"f128de34", "action":"actions/Volume/0.app", "name":"0%"},
+		{"id":"f28de34a", "action":"actions/Volume/20.app", "name":"20%"},
+		{"id":"ff27de34", "action":"actions/Volume/40.app", "name":"40%"},
+		{"id":"fd27de34", "action":"actions/Volume/60.app", "name":"60%"},
+		{"id":"??????????", "action":"actions/Volume/80.app", "name":"80%"},
+		{"id":"fe27de34", "action":"actions/Volume/100.app", "name":"100%"}
+		]
+	},
+	{
+	"name":"Rotary2",
+	"image":"../data/ui/wheel2.png",
+	"actions": [
+		{"id":"f123de34", "action":"actions/Sound/left.app", "name":"Left channel"},
+		{"id":"f23de349", "action":"actions/Sound/right.app", "name":"Right channel"},
+		{"id":"ff22de34", "action":"actions/Sound/stereo.app", "name":"Stereo"}
+		]
+	},
+	{
+	"name":"Button1",
+	"image":"../data/ui/roundButton50x50.png",
+	"actions": [
+		{"id":"423751ec", "action":"actions/Control/Next.app", "name":"Skip"}
+		]
+	},
+	{
+	"name":"Button2",
+	"image":"../data/ui/roundButton50x50.png",
+	"actions": [
+		{"id":"fe22de34", "action":"actions/Control/TogglePlayPause.app", "name":"TogglePlayPause"}
+		]
+	},
+	{
+	"name":"ChainedButtons",
+	"actions": [
+		{"id":"??????????", "action":"actions/Control/Play.app", "name":"Play"},
+		{"id":"??????????", "action":"actions/Control/Pause.app", "name":"Pause"},
+		{"id":"??????????", "action":"actions/Control/Next.app", "name":"Next"},
+		{"id":"??????????", "action":"actions/Control/Previous.app", "name":"Previous"},
+		{"id":"??????????", "action":"actions/Control/Shuffle.app", "name":"Shuffle"},
+		{"id":"??????????", "action":"actions/Control/Repeat.app", "name":"Repeat"}
+		]
+	}
+]}
