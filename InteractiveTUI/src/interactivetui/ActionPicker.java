@@ -20,7 +20,7 @@ public class ActionPicker {
 		l = controlP5.addMultiList("myList",mouseX,mouseY,100,12);
 
 		File[] folders = listFiles("actions/");
-		PApplet.println("Folders: " + folders[0] + " " + folders.length);
+		//PApplet.println("Folders: " + folders[0] + " " + folders.length);
 		populateMenu(folders, l);			
 	}
 
@@ -29,7 +29,7 @@ public class ActionPicker {
 	// This function returns all the files in a directory as an array of Strings  
 	public String[] listFileNames(String dir) {
 		File file = new File(dir);
-		PApplet.println(file.getAbsoluteFile());
+		//PApplet.println(file.getAbsoluteFile());
 		if (file.isDirectory()) {
 			String names[] = file.list();
 			return names;
@@ -100,7 +100,7 @@ public class ActionPicker {
 				MultiListButton subMenu = menu.add(file.getName(),250);
 				File[] subfiles = file.listFiles();
 				for (int i = 0; i < subfiles.length; i++) {
-					PApplet.println("rec " + i + " " + subfiles[i].getName());
+					//PApplet.println("rec " + i + " " + subfiles[i].getName());
 					// Call this function on all files in this directory
 					recursivePopulateMenu(subfiles[i],subMenu,10*value+i);
 				} 

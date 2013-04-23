@@ -1,21 +1,20 @@
 package interactivetui;
 
-import controlP5.ControlEvent;
-import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.core.PImage;
+import controlP5.ControlP5;
 
 public class ComponentUI {
 
 	int xPos=0;
 	int yPos=0;
 	Component component;
-	PApplet parent;
+	PApplet papplet;
 	PImage img = null; 
 	ControlP5 cp5;
 
 	public ComponentUI(PApplet p, ControlP5 controlP5, Component c) {
-		componentUIBuilder(p,controlP5,c,0,0);
+		componentUIBuilder(p,controlP5,c,-50,-50);
 	}
 
 	public ComponentUI(PApplet p, ControlP5 controlP5, Component c, int x, int y) {
@@ -24,12 +23,12 @@ public class ComponentUI {
 
 	private void componentUIBuilder(PApplet p, ControlP5 controlP5, Component c, int x, int y) {
 		component=c;
-		parent=p;
+		papplet=p;
 		cp5 = controlP5;
 
 		// Load and show image
 		if (component.imagePath != "") {
-			img = parent.loadImage(component.imagePath);
+			img = papplet.loadImage(component.imagePath);
 			xPos = x;
 			yPos = y;
 			// Show Rfid buttons
@@ -69,9 +68,8 @@ public class ComponentUI {
 		.setPosition(xPos, yPos)
 		.setSize(getWidth(),getHeight())
 		.setImage(img);
-		;
 
-		parent.image(img, xPos, yPos);
+		papplet.image(img, xPos, yPos);
 
 		int num=0;
 		for (Rfid r:component.actionList) {			  
@@ -80,6 +78,7 @@ public class ComponentUI {
 				.setValue(0)
 				.setPosition(xPos + w , yPos+ distance*num)
 				.setSize(100,10)
+				.setValueLabel(r.id);
 				;
 			} else {
 				cp5.addButton("To define,"+r.id)

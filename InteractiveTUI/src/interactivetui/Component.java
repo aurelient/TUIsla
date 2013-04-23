@@ -9,11 +9,7 @@ public class Component {
 	String imagePath;
 	
 	PImage image;
-	int x, y; // Position
 	ArrayList<Rfid> actionList = new ArrayList<Rfid>();  // Create an empty ArrayList
-
-	Component(String name, int xpos, int ypos) {
-	}
 
 	Component() {
 	}
@@ -36,6 +32,28 @@ public class Component {
 		actionList.add(r);
 	}
 
+	public Rfid getRfid(String id) {
+		for (Rfid rfid:actionList) {
+			if (rfid.id == id) {
+				return rfid;
+			}
+		}
+		return null;
+	}
+	
+	public String toJsonString() {
+		String jsonString = "";
+		jsonString += "\"name\":\"" + this.name + "\",\n";
+		jsonString += "\"image\":\"" + this.image + "\",\n";
+		jsonString += "\"actions\": [";
+		for (Rfid rfid:actionList) {
+			jsonString += rfid.toJson() + "\n";
+		}
+		jsonString += "]},\n";
+		
+		return jsonString;
+	}
+	
 	void backup() {
 		// TODO:
 		// Load config file, 

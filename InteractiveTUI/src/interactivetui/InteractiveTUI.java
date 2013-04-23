@@ -1,14 +1,9 @@
 package interactivetui;
 
-import java.io.BufferedReader;
-import java.util.ArrayList;
-
-import org.json.*;
-
+import processing.core.PApplet;
+import processing.serial.*;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
-import processing.core.PApplet;
-import processing.serial.Serial;
 
 
 public class InteractiveTUI extends PApplet {
@@ -16,11 +11,7 @@ public class InteractiveTUI extends PApplet {
 	/******************
 	 * Misc Variables *
 	 ******************/
-	BufferedReader configReader;
-	String loadedFile;
-	JSONArray obj_list;
-	ArrayList<Component> componentList = new ArrayList<Component>();  // Create an empty ArrayList
-
+	ComponentList componentList;
 	int canvasWidth  = 800;
 	int canvasHeight = 400;
 
@@ -45,30 +36,12 @@ public class InteractiveTUI extends PApplet {
 		controlP5 = new ControlP5(this);
 
 		// I know that the first port in the serial list is always my Arduino, so I open Serial.list()[0].
-		//arduino = new Serial(this, Serial.list()[0], 19200); //has to be 19200, because that's also the baud rate of the SM130 RFID Reader module
+		arduino = new Serial(this, Serial.list()[0], 19200); //has to be 19200, because that's also the baud rate of the SM130 RFID Reader module
+		arduino.bufferUntil('\n');
+		
+		componentList = new ComponentList(this);
 
-
-		// Load config file
-		String[] config = loadStrings("../data/config.json");
-		String data = join(config, "");
-		JSONObject myJsonObject = new JSONObject(data);
-		JSONArray json = myJsonObject.getJSONArray("components");
-		println("a "+json.length());
-		for (int i = 0; i < json.length(); i++) {  
-			JSONObject childJSONObject = json.getJSONObject(i);
-			componentList.add(new Component(childJSONObject));
-		}
-		println(componentList);
-
-		// Setup components
-		int componentNumber = 0;
-		for (Component component:componentList) {
-			ComponentUI cui = new ComponentUI(this,controlP5,component,20 + 200*componentNumber, 20);
-			//cui.setPosition(20 + 200*componentNumber, height-cui.getHeight()/2);
-			componentNumber++;
-		}
-
-		// The events from controlP5 are trigger once when created 
+		// The events from controlP5 are triggered once when created 
 		// we thus wait until they are all created before activating 
 		// the event listener controlEvent below
 		ready = true;
@@ -81,15 +54,22 @@ public class InteractiveTUI extends PApplet {
 	//#############################################################################################################################
 	public void draw()
 	{
-		background(0);
+		background(112);
 		//arduino.bufferUntil('\n'); // don't generate a serialEvent() unless you get a newline character. Rest happens in serialEvent()
-
+		String s;
+		if (arduino.available() > 0) {
+			println("available");
+			s = arduino.readStringUntil('\n');
+			println(s);
+		}
 	}
 
+	
 	//#############################################################################################################################
 	// SerialEvent
 	//#############################################################################################################################
-	void serialEvent (Serial receiving) {  
+	public void serialEvent (Serial receiving) {  
+		println("serialEvent");
 		String inString = receiving.readStringUntil('\n');// get the ASCII string:
 		if (inString != null) {
 			inString = trim(inString);// trim off any whitespace:
@@ -98,28 +78,30 @@ public class InteractiveTUI extends PApplet {
 			for (Component component:componentList) {
 				// Go through the list of RFIDs for each component
 				for (Rfid action:component.actionList) {
-					if (action.id == inString) {
+					if (action.id.equals(inString)) {
+						new ComponentUI(this,controlP5,component,50,50);
 						// Trigger the action
 						open(action.action);
 					}
+					println("");
 				}
 			}
 		}
 	}
 
-
 	public void controlEvent(ControlEvent theEvent) {
-		//		println(theEvent.controller().name()+" = "+theEvent.value());  
-		//
-		//		println("TYPE " + theEvent.controller().getInfo());
-
+		println("controlEvent");
+		
 		if (ready) {
 			if(theEvent.getController().getValue()==0) {
-				println("isButton");
+				println("isButton " + theEvent.getController().getName() + " " + theEvent.getController().getValueLabel());
 				ActionPicker ap = new ActionPicker(this, controlP5, mouseX, mouseY);
 			} else {
 				if (theEvent.getController().getId() == -1) {
-					PApplet.open(theEvent.getName());
+					println(theEvent.controller().name()+" = "+theEvent.value());  
+					println("TYPE " + theEvent.controller().getInfo());
+					println(theEvent.getName());
+					//PApplet.open(theEvent.getName());
 				}
 			}
 		}
@@ -134,4 +116,6 @@ public class InteractiveTUI extends PApplet {
 	public static void main(String _args[]) {
 		PApplet.main(new String[] { interactivetui.InteractiveTUI.class.getName() });
 	}
+	
+		
 }

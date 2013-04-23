@@ -15,9 +15,9 @@
 	"name":"Rotary2",
 	"image":"../data/ui/wheel2.png",
 	"actions": [
-		{"id":"f123de34", "action":"actions/Sound/left.app", "name":"Left channel"},
-		{"id":"f23de349", "action":"actions/Sound/right.app", "name":"Right channel"},
-		{"id":"ff22de34", "action":"actions/Sound/stereo.app", "name":"Stereo"}
+		{"id":"b2b09e87", "action":"actions/Sound/left.app", "name":"Left channel"},
+		{"id":"27da0873", "action":"actions/Sound/right.app", "name":"Right channel"},
+		{"id":"a2b29f87", "action":"actions/Sound/stereo.app", "name":"Stereo"}
 		]
 	},
 	{
@@ -31,7 +31,21 @@
 	"name":"Button2",
 	"image":"../data/ui/roundButton50x50.png",
 	"actions": [
-		{"id":"fe22de34", "action":"actions/Control/TogglePlayPause.app", "name":"TogglePlayPause"}
+		{"id":"92879b87", "action":"actions/Control/TogglePlayPause.app", "name":"TogglePlayPause"}
+		]
+	},
+	{
+	"name":"Button3",
+	"image":"../data/ui/roundButton50x50.png",
+	"actions": [
+		{"id":"628b9e87", "action":"actions/Control/TogglePlayPause.app", "name":"TogglePlayPause"}
+		]
+	},
+	{
+	"name":"Button4",
+	"image":"../data/ui/roundButton50x50.png",
+	"actions": [
+		{"id":"e2829b87", "action":"actions/Control/TogglePlayPause.app", "name":"TogglePlayPause"}
 		]
 	},
 	{
